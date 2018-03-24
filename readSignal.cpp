@@ -1,3 +1,7 @@
+#define RCPIN (6)
+#define PER (120)
+char inputBuf[5];
+
 bool readSignal( int botnum )
 {
   long now = micros();
@@ -18,10 +22,6 @@ bool readSignal( int botnum )
     return( false );
   }
 
-  char tbuf[5];
-  char* ptr = tbuf;
-  int ended = 0;
-  byte sum = 0;
   long bitstart;
   do
   {
@@ -32,7 +32,11 @@ bool readSignal( int botnum )
   {
     return( false );
   }
-  for( int b=0; (b<5)&&!ended; b++ )
+  
+  char tbuf[5];
+  char* ptr = tbuf;
+  byte sum = 0;
+  for( int b=0; b<5; b++ )
   {
     unsigned char c = 0;
     for( int i=0; i<8; i++ )
